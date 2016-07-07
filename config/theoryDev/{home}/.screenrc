@@ -1,0 +1,56 @@
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+##    Explanation of hardstatus line    ##
+
+hardstatus alwayslastline "%{=b}%{b}%-w%{.BW}%10>%n*%t%{-}%+w%< %= | %{kG}%0c %D %Y-%m-%d"
+#hardstatus alwayslastline "%{=b}%{b}%-w%{.BW}%10>%n*%t%{-}%+w%< %=%{kG}%C%A %D, %Y-%m-%d"
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+##    Some general options    ##
+
+# Turn off start message:
+startup_message off   # default: on
+
+autodetach on      # default: on
+
+# Set messages timeout to one second:
+msgwait 1
+
+defscrollback 1000
+
+#use bash as default shell.
+shell bash
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+##    Keybindings    ##
+
+# bind F1  to select 1
+# bind F7  to detach screen session from this terminal
+# bind F8  to kill current screen window.
+# bind F9  to create a new screen
+# bind F10 to rename current screen window
+# bind F11 to move to previous window
+# bind F12 to move to next window
+#bindkey -k k1 select 1
+#bindkey -k k7 detach
+#bindkey -k k8 kill
+#bindkey -k k9 screen
+#bindkey -k k; title
+#bindkey -k F1 prev
+#bindkey -k F2 next
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+##    Tricky Keybindings    ##
+# use `cat >/dev/null` to capture ^.^
+# bindkey ^[[1;5A copy  #ctrl-arrow for xterm
+# bindkey ^[Oa copy     #ctrl-arrow for aterm
+
+#bindkey ^[[1;5A prev    #Ctrl+Up
+#bindkey ^[[1;5B next    #Ctrl+Down
+
+#bindkey ^[[6;5~ next    #Ctrl+Up for yakuaka
+#bindkey ^[[5;5~ prev    #Ctrl+Down for yakuaka
+
+bindkey ^[[1;5C next    #Ctrl+larrow for yakuaka
+bindkey ^[[1;5D prev    #Ctrl+rarrow for yakuaka
+
+# =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= #
+#termcapinfo xterm|xterms|xs|rxvt ti@:te@
+# Make xterm scrolling work properly with screen for Mac.
+termcapinfo xterm-256color|xterm-color|xterm|xterms|xs|rxvt ti@:te@

@@ -1,0 +1,15 @@
+source "$HOME/.screenrc"
+
+#screen -d -m -U -S theory
+#screen
+chdir /opt/crystal
+screen -t crystal
+chdir /opt/theory/theory
+screen -t theory
+screen -t theory
+screen -t theory
+screen -t theory
+screen -t theory
+zombie qr
+screen -t server /usr/local/bin/theory_start.py -c
+screen -t client /usr/local/bin/theory_start.py
