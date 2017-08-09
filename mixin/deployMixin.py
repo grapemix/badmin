@@ -99,4 +99,4 @@ class DeployMixin(ConfigMixin):
     if len(debLst) > 0:
       with hide("output"):
         sudo("apt-get update")
-        sudo("apt-get --yes --force-yes install %s" % (" ".join(debLst)))
+        sudo("apt-get --yes install %s" % (" ".join(debLst)))
