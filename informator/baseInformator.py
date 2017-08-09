@@ -4,6 +4,7 @@
 from abc import ABCMeta, abstractmethod
 import codecs
 from fabric.api import run, cd, sudo, hide, settings, local, lcd
+from fabric.contrib.files import exists as fabExists
 from fabric.operations import get, put
 
 import os
@@ -55,6 +56,11 @@ class BaseInformator(object):
   def restart(self, cfg):
     self.stop()
     self.start()
+
+  def _initDir(self, dirPath, usrName, grpName):
+    if not fabExists(dirPath):
+      sudo("mkdir -p '{0}'".format(dirPath))
+    sudo("chown -R {0}.{1} '{2}'".format(usrName, grpName, dirPath))
 
   def _cpOrReplaceFile(
       self,
@@ -127,8 +133,12 @@ class BaseInformator(object):
     else:
       return False
 
+  def createUsrGrp(self, cfg):
+    pass
+
   def postInst(self, cfg):
     pass
 
   def validateInst(self, cfg):
     return True
+

@@ -101,6 +101,8 @@ class Infect(SimpleCommand, DeployMixin):
       for informator in informatorLst.values():
         informator.aptKeyInstaller()
 
+      # pkg installation has to come first because we don't want any files
+      # in resource dir being overwritten by the files from pkg
       debDepLst = []
       for informator in informatorLst.values():
         debDepLst.extend(informator.debDepLst)
@@ -142,6 +144,12 @@ class Infect(SimpleCommand, DeployMixin):
         raise
       finally:
         rmtree(tmpDirPath)
+
+
+      for informatorName, informator in informatorLst.iteritems():
+        informator.createUsrGrp(cfg)
+
+      sudo("systemd-tmpfiles --create")
 
       #informatorLst.reverse()
       for informatorName, informator in informatorLst.iteritems():
