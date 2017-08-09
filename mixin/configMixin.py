@@ -29,18 +29,19 @@ class ConfigMixin(object):
       pass
 
     def getV(k):
-      reResult = varPattern.search(str(cfg[k]))
-      if reResult is not None:
-        r = cfg[k]
-        for i in reResult.groups():
-          r = r.replace("{" + i + "}", getV(i))
-        cfg[k] = r
+      if k in cfg:
+        reResult = varPattern.search(str(cfg[k]))
+        if reResult is not None:
+          r = cfg[k]
+          for i in reResult.groups():
+            r = r.replace("{" + i + "}", getV(i))
+          cfg[k] = r
 
       try:
         del keyLst[k]
       except:
         pass
-      return cfg[k]
+      return cfg.get(k, "{" + k + "}")
 
     while(len(keyLst) > 0):
       k = keyLst.pop()
