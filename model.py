@@ -44,6 +44,10 @@ class Project(model.Model):
       verboseName=_("Environment"),
       helpText=_("Environment of the project")
       )
+  version = model.IntegerField(
+      verboseName=_("Version"),
+      default=1,
+      )
   dict = model.TextField(
       blank=True,
       null=True,
